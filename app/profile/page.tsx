@@ -8,7 +8,7 @@ import {
   FaMapMarkerAlt, 
   FaAward, 
   FaGraduationCap, 
-  FaBriefcase, 
+  FaGlassWhiskey, 
   FaCheckCircle,
   FaArrowLeft,
   FaCheck
@@ -89,7 +89,7 @@ export default function Profile() {
                     <span>{profile.location}</span>
                     <span className="mx-1.5">•</span>
                     <Link href="/network" className="text-amber-500 hover:underline hover:text-amber-400 font-semibold">
-                      {profile.connectionsCount} connections
+                      {profile.connectionsCount} bad influences
                     </Link>
                   </div>
                 </div>
@@ -97,16 +97,16 @@ export default function Profile() {
                 {/* Profile actions */}
                 <div className="flex gap-2.5">
                   <button 
-                    onClick={() => alert("Profile set to: Open to BarConsulting & Lead Roles!")}
+                    onClick={() => alert("Status set to: Open to Drink! Notify all Bad Influences nearby.")}
                     className="rounded-full bg-amber-500 hover:bg-amber-600 px-4 py-1.5 text-xs font-bold text-zinc-950 transition-all hover:scale-[1.01]"
                   >
-                    Open to work
+                    Open to drink
                   </button>
                   <button 
-                    onClick={() => alert("Creating custom DrinkedIn resume PDF...")}
+                    onClick={() => alert("Creating custom DrinkedIn Hangover Report PDF...")}
                     className="rounded-full border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 px-4 py-1.5 text-xs font-bold text-zinc-300 transition-colors"
                   >
-                    Export Cellar Resume
+                    Export Hangover Report
                   </button>
                 </div>
               </div>
@@ -151,9 +151,9 @@ export default function Profile() {
           {/* EXPERIENCE SECTION */}
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
-              <h2 className="text-base font-bold text-zinc-100">Experience</h2>
+              <h2 className="text-base font-bold text-zinc-100">Epic Drinking Achievements</h2>
               <button 
-                onClick={() => alert("Add Experience page is disabled in mockup.")}
+                onClick={() => alert("Add Achievement page is disabled in mockup.")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
               >
                 <FaPlus className="h-4 w-4" />
@@ -164,7 +164,7 @@ export default function Profile() {
               {profile.experience.map((exp) => (
                 <div key={exp.id} className="flex gap-4 items-start">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-zinc-900 border border-zinc-800 text-amber-500">
-                    <FaBriefcase className="h-5 w-5" />
+                    <FaGlassWhiskey className="h-5 w-5" />
                   </div>
                   <div className="flex-1 space-y-1">
                     <h3 className="text-sm font-bold text-zinc-100">{exp.role}</h3>
@@ -180,9 +180,9 @@ export default function Profile() {
           {/* SKILLS & ENDORSEMENTS SECTION */}
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-900">
-              <h2 className="text-base font-bold text-zinc-100">Skills & Endorsements</h2>
+              <h2 className="text-base font-bold text-zinc-100">Drinking Superpowers</h2>
               <button 
-                onClick={() => alert("Add custom skill is coming soon!")}
+                onClick={() => alert("Add custom superpower is coming soon!")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
               >
                 <FaPlus className="h-4 w-4" />
@@ -211,7 +211,7 @@ export default function Profile() {
           {/* EDUCATION & CREDENTIALS SECTION */}
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
-              <h2 className="text-base font-bold text-zinc-100">Education & Accreditations</h2>
+              <h2 className="text-base font-bold text-zinc-100">Liver Training & Accreditations</h2>
               <button 
                 onClick={() => alert("Add credentials page is disabled in mockup.")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"

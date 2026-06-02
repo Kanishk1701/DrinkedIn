@@ -7,7 +7,6 @@ import {
   FaGlassMartini, 
   FaComment, 
   FaUserPlus, 
-  FaBriefcase, 
   FaEye, 
   FaCheck, 
   FaTrash 
@@ -15,16 +14,16 @@ import {
 import Link from "next/link";
 import { useEffect } from "react";
 
-export default function Notifications() {
+export default function PourAlerts() {
   const notifications = useDrinkedInStore((state) => state.notifications);
   const markNotificationsAsRead = useDrinkedInStore((state) => state.markNotificationsAsRead);
 
-  // Automatically mark notifications as read when visiting this page
+  // Automatically mark alerts as read when visiting this page
   useEffect(() => {
     markNotificationsAsRead();
   }, [markNotificationsAsRead]);
 
-  const getNotificationIcon = (type: NotificationItem["type"]) => {
+  const getPourAlertIcon = (type: NotificationItem["type"]) => {
     switch (type) {
       case "cheer":
         return <FaGlassMartini className="h-4.5 w-4.5 text-amber-500" />;
@@ -32,8 +31,6 @@ export default function Notifications() {
         return <FaComment className="h-4.5 w-4.5 text-sky-500" />;
       case "connection":
         return <FaUserPlus className="h-4.5 w-4.5 text-emerald-500" />;
-      case "job":
-        return <FaBriefcase className="h-4.5 w-4.5 text-orange-500" />;
       case "view":
         return <FaEye className="h-4.5 w-4.5 text-indigo-500" />;
       default:
@@ -41,20 +38,18 @@ export default function Notifications() {
     }
   };
 
-  const getNotificationTitle = (type: NotificationItem["type"]) => {
+  const getPourAlertTitle = (type: NotificationItem["type"]) => {
     switch (type) {
       case "cheer":
-        return "Cheers Social Accent";
+        return "Cheers Accent Alert";
       case "comment":
-        return "Pour comment received";
+        return "Bar Talk received";
       case "connection":
-        return "Connection Request";
-      case "job":
-        return "Careers Match Recommendation";
+        return "Bad Influence Request";
       case "view":
-        return "Profile View Intelligence";
+        return "Pub Visitors Intelligence";
       default:
-        return "DrinkedIn Alert";
+        return "DrinkedIn Pour Alert";
     }
   };
 
@@ -64,10 +59,10 @@ export default function Notifications() {
 
       <main className="flex-1 w-full max-w-3xl mx-auto px-4 py-6">
         <div className="rounded-xl border border-zinc-800 bg-zinc-950 shadow-lg overflow-hidden">
-          {/* Notifications Header */}
+          {/* Pour Alerts Header */}
           <div className="p-4 border-b border-zinc-900 bg-zinc-950 flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <h2 className="text-sm font-bold text-zinc-200">Notifications</h2>
+              <h2 className="text-sm font-bold text-zinc-200">Pour Alerts</h2>
               <span className="rounded-full bg-zinc-900 text-zinc-500 px-2 py-0.5 text-[10px] font-semibold">
                 {notifications.length} total
               </span>
@@ -75,7 +70,7 @@ export default function Notifications() {
             <button
               onClick={() => {
                 markNotificationsAsRead();
-                alert("All notifications marked as read.");
+                alert("All Pour Alerts marked as read.");
               }}
               className="text-[10px] font-bold text-amber-500 hover:text-amber-400 hover:underline flex items-center gap-1 transition-colors"
             >
@@ -84,12 +79,12 @@ export default function Notifications() {
             </button>
           </div>
 
-          {/* Notifications List */}
+          {/* Pour Alerts List */}
           <div className="divide-y divide-zinc-900">
             {notifications.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
                 <FaBell className="h-10 w-10 text-zinc-700 mb-2.5" />
-                <p className="text-xs text-zinc-500">Your notifications tray is dry. Check back later!</p>
+                <p className="text-xs text-zinc-500">Your Pour Alerts tray is dry. Pour another drink!</p>
               </div>
             ) : (
               notifications.map((item) => (
@@ -103,16 +98,16 @@ export default function Notifications() {
                 >
                   {/* Left Column: Icon Type */}
                   <div className="h-9 w-9 shrink-0 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center shadow-inner">
-                    {getNotificationIcon(item.type)}
+                    {getPourAlertIcon(item.type)}
                   </div>
 
                   {/* Middle Column: Text details */}
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex justify-between items-start">
                       <h4 className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
-                        {getNotificationTitle(item.type)}
+                        {getPourAlertTitle(item.type)}
                       </h4>
-                      <span className="text-[9px] text-zinc-655 font-normal">{item.time}</span>
+                      <span className="text-[9px] text-zinc-650 font-normal">{item.time}</span>
                     </div>
 
                     <div className="flex items-start gap-2 pt-0.5">
@@ -120,12 +115,16 @@ export default function Notifications() {
                         <img
                           src={item.actorAvatar}
                           alt={item.actorName}
-                          className="h-5 w-5 rounded-full object-cover shrink-0 border border-zinc-850 mt-0.5"
+                          className="h-5 w-5 rounded-full object-cover shrink-0 border border-zinc-855 mt-0.5"
                         />
                       )}
-                      <p className="text-xs text-zinc-300 leading-relaxed">
+                      <p className="text-xs text-zinc-350 leading-relaxed">
                         {item.actorName && <span className="font-bold text-zinc-200">{item.actorName} </span>}
-                        {item.text}
+                        {/* Adapt texts for connections and comments */}
+                        {item.text
+                          .replace("connection request", "bad influence alert")
+                          .replace("commented on your post", "poured some Bar Talk on your post")
+                        }
                       </p>
                     </div>
 

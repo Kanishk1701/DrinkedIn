@@ -74,7 +74,7 @@ export default function CreatePostModal({ isOpen, onClose }: CreatePostModalProp
       <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950 shadow-2xl z-10 max-h-[90vh] flex flex-col">
         {/* Modal Header */}
         <div className="flex items-center justify-between border-b border-zinc-900 px-4 py-3.5">
-          <h2 className="text-base font-bold text-zinc-100">Create a Post</h2>
+          <h2 className="text-base font-bold text-zinc-100">Start a Rumor</h2>
           <button 
             onClick={onClose} 
             className="rounded-full p-1 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200 transition-colors"
@@ -87,7 +87,7 @@ export default function CreatePostModal({ isOpen, onClose }: CreatePostModalProp
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-4 space-y-4">
           {/* Post Textarea */}
           <textarea
-            placeholder="Share a cocktail insight, brewing update, or job announcement..."
+            placeholder="Share a regret, a missing item, or an unhinged text..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}

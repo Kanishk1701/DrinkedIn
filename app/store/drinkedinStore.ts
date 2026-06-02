@@ -34,20 +34,7 @@ export interface Post {
   shared?: boolean;
 }
 
-export interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  salary: string;
-  type: string; // Full-time, Part-time, etc.
-  postedAgo: string;
-  description: string;
-  requirements: string[];
-  benefits: string[];
-  logoColor: string;
-  applied: boolean;
-}
+// Job interfaces removed as careers are disabled
 
 export interface Connection {
   id: string;
@@ -78,7 +65,7 @@ export interface ChatThread {
 
 export interface NotificationItem {
   id: string;
-  type: "cheer" | "comment" | "view" | "job" | "connection";
+  type: "cheer" | "comment" | "view" | "connection";
   actorName?: string;
   actorAvatar?: string;
   text: string;
@@ -117,7 +104,6 @@ export interface UserProfile {
 interface DrinkedInState {
   profile: UserProfile;
   posts: Post[];
-  jobs: Job[];
   connections: Connection[];
   threads: ChatThread[];
   notifications: NotificationItem[];
@@ -127,7 +113,6 @@ interface DrinkedInState {
   cheerPost: (postId: string) => void;
   sharePost: (postId: string) => void;
   addComment: (postId: string, commentText: string) => void;
-  applyToJob: (jobId: string) => void;
   toggleConnection: (id: string) => void;
   sendMessage: (threadId: string, text: string) => void;
   markNotificationsAsRead: () => void;
@@ -137,52 +122,52 @@ interface DrinkedInState {
 export const useDrinkedInStore = create<DrinkedInState>((set) => ({
   profile: {
     name: "Marcus Vane",
-    title: "Beverage Director & Award-Winning Mixologist",
+    title: "3-Second Pint Chugger & Tuesday Hangover Legend",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
     coverPhoto: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1200&auto=format&fit=crop",
     location: "London, England, United Kingdom",
     connectionsCount: 842,
     profileViews: 147,
     postImpressions: 3420,
-    about: "Passionate beverage architect with 10+ years of experience curating world-class cocktail programs and training elite bar staff. Specializing in molecular mixology, culinary-driven cocktails, and zero-waste bar programs. Certified Sommelier and spirits educator.",
+    about: "Passionate table climber with 10+ years of high-volume liver destruction. Specializing in convincing bartenders to pour free shots, midnight karaoke, and surviving morning meetings on 2 hours of sleep. Doctorate in Liver Tolerance and spirits consumption.",
     skills: [
-      "Molecular Mixology",
-      "Menu Engineering",
-      "Spirits Education",
-      "Bar Management & Inventory",
-      "Zero-Waste Programs",
-      "Staff Training",
-      "Flavor Pairing"
+      "Dry Gulping",
+      "Spelling while wasted",
+      "Confronting Exes",
+      "Finding Lost Keys",
+      "Convincing others to buy rounds",
+      "Sneaking out of bad dates",
+      "Table Dancing"
     ],
     experience: [
       {
         id: "exp-1",
-        role: "Beverage Director",
-        company: "The Velvet Shaker Lounge",
+        role: "Chief Pint Exec (CPE)",
+        company: "The Golden Beer Mug Pub",
         duration: "2023 - Present",
-        description: "Directing the beverage operations for an upscale Soho lounge. Curated an 18-drink signature cocktail menu focusing on local botanicals, resulting in a 24% increase in spirit sales. Leading a team of 12 bartenders and 4 barbacks.",
+        description: "Successfully chugged 5 Guinness pints in under 20 seconds. Led a team of 4 lightweight buddies home safely without losing anyone's shoes.",
         location: "London, UK"
       },
       {
         id: "exp-2",
-        role: "Head Mixologist",
-        company: "Neon Distillery & Bar",
+        role: "Vodka Shot Coordinator",
+        company: "The Double Spill Lounge",
         duration: "2020 - 2023",
-        description: "Pioneered a zero-waste cocktail menu that repurposed bar prep scraps into bitters, cordials, and garnishes. Awarded 'Best New Cocktail Program' in London Spirit Awards 2022.",
+        description: "Convinced the head bartender to pour 12 rounds of free Tequila shots. Survived the subsequent Wednesday morning budget presentation.",
         location: "London, UK"
       }
     ],
     education: [
       {
         id: "edu-1",
-        school: "Wine & Spirit Education Trust (WSET)",
-        degree: "Level 3 Award in Spirits",
-        duration: "2019 - 2020"
+        school: "University of Hard Knocks",
+        degree: "Doctorate in Liver Tolerance",
+        duration: "2019 - Present"
       },
       {
         id: "edu-2",
-        school: "University of London",
-        degree: "Bachelor of Science in Food Science & Chemistry",
+        school: "Local Irish Pub Academy",
+        degree: "Master of Rum & Regrets",
         duration: "2015 - 2018"
       }
     ]
@@ -192,7 +177,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "post-1",
       authorName: "Elena Rostova",
-      authorTitle: "Master Sommelier & Wine Consultant",
+      authorTitle: "Wine Chugging Champion & Box Wine Connoisseur",
       authorAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
       timeAgo: "2h",
       content: "Thrilled to share my latest article on pairing high-acid white wines with modern fusion dishes. In particular, German Dry Rieslings can cut through rich, spicy flavor profiles like nothing else. What are your thoughts on pairing Rieslings with modern Sichuan cuisine?",
@@ -203,7 +188,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
         {
           id: "c-1",
           authorName: "Arthur Pendelton",
-          authorTitle: "Cellar Master at Le Bristol",
+          authorTitle: "Grape Juice Enthusiast & Cellar Robber",
           authorAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&auto=format&fit=crop",
           content: "Completely agree, Elena! The residual sugar and high acidity balance the Sichuan peppercorn heat beautifully.",
           time: "1h ago"
@@ -215,7 +200,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "post-2",
       authorName: "Kenji Sato",
-      authorTitle: "Head Brewer at Sakura Craft Brewery",
+      authorTitle: "Homebrew Disaster Maker & Yeast Informant",
       authorAvatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop",
       timeAgo: "5h",
       content: "After months of experimenting, our Yuzu-infused Hazy IPA is finally in the barrels! Brewed with Citra and Mosaic hops and fresh organic yuzu peel sourced directly from Kochi Prefecture. Clean, citrus-forward, with a velvety mouthfeel. Launching next Friday in the taproom!",
@@ -229,7 +214,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "post-3",
       authorName: "Marcus Vane",
-      authorTitle: "Beverage Director & Award-Winning Mixologist",
+      authorTitle: "3-Second Pint Chugger & Tuesday Hangover Legend",
       authorAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
       timeAgo: "1d",
       content: "Just finalized the new signature cocktail for the Summer Solstice menu: The Smoked Apricot Sour. The secret is grilling the apricots over oak wood before pureeing. Here is the recipe for anyone looking to try this behind their own bar. Feedback welcome!",
@@ -258,7 +243,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
         {
           id: "c-2",
           authorName: "Claire Dupont",
-          authorTitle: "Global Brand Ambassador | Gin de France",
+          authorTitle: "Gin-Induced Existentialist | Happy Hour Organizer",
           authorAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=100&auto=format&fit=crop",
           content: "Wow, Marcus! The honey rosemary syrup is a brilliant touch. I must try this with our barrel-reserve botanical gin.",
           time: "18h ago"
@@ -270,10 +255,10 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "post-4",
       authorName: "Clara O'Connor",
-      authorTitle: "Talent Acquisition Lead | Liquid Hospitality Group",
+      authorTitle: "Pub Crawler Coordinator & Drunk Text Enabler",
       authorAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
       timeAgo: "2d",
-      content: "We are expanding! Liquid Hospitality is seeking a passionate Head Mixologist to lead the team at our newest secret venue, 'The Copper Still', opening soon in Soho. If you have a flair for menu development, team leadership, and creative presentations, let's talk! Check out the Jobs tab to apply directly.",
+      content: "Last night was an absolute disaster at Midway Bar. Lost my left shoe, somehow ended up with a traffic cone in my living room, and sent 15 Drunk Texts to my ex. Anyone else ready for round 2 tonight?",
       likes: 56,
       commentsCount: 4,
       comments: [],
@@ -282,110 +267,13 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     }
   ],
   
-  jobs: [
-    {
-      id: "job-1",
-      title: "Head Mixologist & Bar Manager",
-      company: "The Copper Still (Liquid Hospitality)",
-      location: "Soho, London, UK",
-      salary: "£42,000 - £48,000 / year + service charge",
-      type: "Full-time",
-      postedAgo: "2 days ago",
-      description: "We are seeking an innovative Head Mixologist to lead our cocktail program. You will be responsible for creating quarterly seasonal menus, maintaining a 21% beverage cost, managing supplier relationships, and leading a dynamic team of 8 bartenders. Experience in high-volume, high-end cocktail bars is a must.",
-      requirements: [
-        "Minimum 3 years in a Head Bartender or Bar Manager role.",
-        "Proven menu engineering experience with visual portfolio.",
-        "Strong knowledge of inventory management systems and cost control.",
-        "Passion for mentorship and staff development."
-      ],
-      benefits: [
-        "Excellent gratuity package (TRONC).",
-        "28 days paid holiday.",
-        "Supplier masterclasses and international education trips.",
-        "Generous staff discount across all 6 group venues."
-      ],
-      logoColor: "bg-amber-600",
-      applied: false
-    },
-    {
-      id: "job-2",
-      title: "Spirits Brand Ambassador",
-      company: "Juniper & Co. Distillers",
-      location: "London (Remote/Field)",
-      salary: "£38,000 - £42,000 / year + bonus + travel allowance",
-      type: "Full-time",
-      postedAgo: "4 days ago",
-      description: "Grow the footprint of our award-winning dry gin and botanical rum portfolios in London's premier establishments. You will conduct masterclasses, organize activation events, support bar teams with menu placements, and act as the local face of our brand.",
-      requirements: [
-        "Previous experience in spirits brand advocacy or high-end bartending.",
-        "Excellent communication, presentation, and networking skills.",
-        "Flexible schedule (includes evening activations and tastings).",
-        "WSET Level 2 or 3 in Spirits is highly desirable."
-      ],
-      benefits: [
-        "Uncapped performance bonus based on account acquisitions.",
-        "Company laptop, phone, and unlimited tasting samples.",
-        "Work from home flexibility.",
-        "Fully funded WSET Level 3/Diploma courses."
-      ],
-      logoColor: "bg-emerald-700",
-      applied: false
-    },
-    {
-      id: "job-3",
-      title: "Assistant Sommelier",
-      company: "The Grand Grapes Restaurant (Michelin * )",
-      location: "Mayfair, London, UK",
-      salary: "£32,000 - £35,000 / year + tips",
-      type: "Full-time",
-      postedAgo: "1 week ago",
-      description: "Work alongside our Head Sommelier to manage a cellar of over 1,200 references. You will advise guests on pairings, ensure optimal storage temperatures, manage inventory, and assist in curating our premium wine-by-the-glass program.",
-      requirements: [
-        "Certified Sommelier status (Court of Master Sommeliers or equivalent).",
-        "Experience in fine dining or Michelin-starred environments.",
-        "Impeccable table service etiquette and customer relations.",
-        "Willingness to learn and grow within an elite wine team."
-      ],
-      benefits: [
-        "Share of service charge.",
-        "Regular tastings with global winemakers.",
-        "Uniform provided and dry-cleaned.",
-        "Clear path to Senior Sommelier role."
-      ],
-      logoColor: "bg-purple-800",
-      applied: false
-    },
-    {
-      id: "job-4",
-      title: "Craft Cider Specialist & Assistant Brewer",
-      company: "Hops & Apples Orchard Co.",
-      location: "Bristol, UK",
-      salary: "£28,000 - £31,000 / year",
-      type: "Full-time",
-      postedAgo: "5 days ago",
-      description: "Join our fermentation team! Responsible for operating pressing equipment, monitoring fermentation temperatures, logging density metrics, preparing kegging runs, and developing experimental fruit-infused ciders.",
-      requirements: [
-        "General Certificate in Brewing or Cider-making.",
-        "Physical stamina (ability to lift 25kg kegs).",
-        "Experience with chemical sanitation protocols (CIP).",
-        "Keen sensory palate and fermentation curiosity."
-      ],
-      benefits: [
-        "Free cider allocation (1 case/month).",
-        "Overtime opportunities at time-and-a-half.",
-        "Private healthcare cover.",
-        "On-site gym and parking."
-      ],
-      logoColor: "bg-red-700",
-      applied: false
-    }
-  ],
+
   
   connections: [
     {
       id: "conn-1",
       name: "Claire Dupont",
-      title: "Global Brand Ambassador | Gin de France",
+      title: "Gin-Induced Existentialist | Happy Hour Organizer",
       avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 18,
       status: "connected"
@@ -393,7 +281,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "conn-2",
       name: "Arthur Pendelton",
-      title: "Cellar Master at Le Bristol",
+      title: "Grape Juice Enthusiast & Cellar Robber",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 5,
       status: "connected"
@@ -401,7 +289,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "conn-3",
       name: "Danielle Vance",
-      title: "Whisky Distillery Manager at GlenCairn",
+      title: "Whisky Guzzler & Fire-breather",
       avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 31,
       status: "none"
@@ -409,7 +297,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "conn-4",
       name: "Vikram Mehta",
-      title: "Consultant Mixologist & Bar Consultant",
+      title: "Overpriced Water Seller & Cocktail Disapprover",
       avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 12,
       status: "none"
@@ -417,7 +305,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "conn-5",
       name: "Sofia Gatti",
-      title: "Italian Craft Beer Distributor",
+      title: "Pizza and Peroni Consumer | Bad Decisions Coordinator",
       avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 8,
       status: "pending"
@@ -425,7 +313,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "conn-6",
       name: "Robert 'Rusty' Miller",
-      title: "Flair Bartending Champion & Performer",
+      title: "Flair Glass Spiller & Bottle Dropper",
       avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop",
       mutualConnections: 45,
       status: "none"
@@ -436,7 +324,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "chat-1",
       partnerName: "Claire Dupont",
-      partnerTitle: "Global Brand Ambassador | Gin de France",
+      partnerTitle: "Gin-Induced Existentialist | Happy Hour Organizer",
       partnerAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
       lastMessage: "Let's definitely schedule a tasting for next Thursday! Let me know if that works.",
       lastMessageTime: "Yesterday",
@@ -465,7 +353,7 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "chat-2",
       partnerName: "Arthur Pendelton",
-      partnerTitle: "Cellar Master at Le Bristol",
+      partnerTitle: "Grape Juice Enthusiast & Cellar Robber",
       partnerAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
       lastMessage: "I will check with my distributor and let you know if we can ship a case.",
       lastMessageTime: "May 28",
@@ -523,17 +411,17 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
     {
       id: "n-3",
       type: "view",
-      text: "Liquid Hospitality Group recruiters viewed your profile. They are hiring mixologists in Soho!",
+      text: "A group of drinkers at Midway Bar & Restaurant viewed your profile. They heard you can chug a pint in 3 seconds!",
       time: "1d ago",
       read: true,
-      link: "/jobs"
+      link: "/"
     },
     {
       id: "n-4",
       type: "connection",
       actorName: "Sofia Gatti",
       actorAvatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop",
-      text: "sent you a connection request.",
+      text: "sent you a bad influence alert.",
       time: "3d ago",
       read: true,
       link: "/network"
@@ -613,12 +501,6 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
       })
     };
   }),
-  
-  applyToJob: (jobId) => set((state) => ({
-    jobs: state.jobs.map((job) => 
-      job.id === jobId ? { ...job, applied: true } : job
-    )
-  })),
   
   toggleConnection: (id) => set((state) => {
     let connectionsCountDiff = 0;

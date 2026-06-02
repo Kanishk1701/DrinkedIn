@@ -97,14 +97,14 @@ export default function PostCard({ post }: PostCardProps) {
             onClick={() => setShowComments(!showComments)}
             className="hover:underline hover:text-zinc-300"
           >
-            {post.commentsCount} comments
+            {post.commentsCount} Bar Talk
           </button>
-          <span>{post.shares} shares</span>
+          <span>{post.shares} Pass The Pint</span>
         </div>
       </div>
 
       {/* Interactive Action Buttons */}
-      <div className="grid grid-cols-4 gap-1 pt-2">
+      <div className="grid grid-cols-3 gap-1 pt-2">
         {/* Cheers Button */}
         <button
           onClick={handleCheer}
@@ -128,7 +128,7 @@ export default function PostCard({ post }: PostCardProps) {
           }`}
         >
           <FaRegComment className="h-4 w-4" />
-          <span>Comment</span>
+          <span>Bar Talk</span>
         </button>
 
         {/* Repost Button */}
@@ -141,16 +141,7 @@ export default function PostCard({ post }: PostCardProps) {
           }`}
         >
           <FaRetweet className="h-4 w-4" />
-          <span>Share</span>
-        </button>
-
-        {/* Send Button */}
-        <button
-          onClick={() => alert("Recipe shared with your connections!")}
-          className="flex items-center justify-center gap-1.5 py-2 text-xs font-medium text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50 rounded-lg transition-colors"
-        >
-          <FaPaperPlane className="h-3.5 w-3.5" />
-          <span>Send</span>
+          <span>Pass The Pint</span>
         </button>
       </div>
 
@@ -167,7 +158,7 @@ export default function PostCard({ post }: PostCardProps) {
             <div className="flex-1 flex gap-2">
               <input
                 type="text"
-                placeholder="Pour a comment..."
+                placeholder="Start an unnecessary argument..."
                 value={newCommentText}
                 onChange={(e) => setNewCommentText(e.target.value)}
                 className="flex-1 rounded-full bg-zinc-900 px-4 py-1.5 text-xs text-zinc-200 placeholder-zinc-500 border border-zinc-800 focus:border-amber-500/40 focus:outline-none"
@@ -184,7 +175,7 @@ export default function PostCard({ post }: PostCardProps) {
           {/* Comments List */}
           <div className="space-y-3.5 max-h-[250px] overflow-y-auto pr-1">
             {post.comments.length === 0 ? (
-              <p className="text-xs text-zinc-600 text-center py-2">No comments yet. Pour the first thoughts!</p>
+              <p className="text-xs text-zinc-600 text-center py-2">No Bar Talk yet. Pour the first thoughts!</p>
             ) : (
               post.comments.map((comment) => (
                 <div key={comment.id} className="flex gap-2.5 items-start bg-zinc-900/40 rounded-xl p-3 border border-zinc-800/20">

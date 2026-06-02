@@ -30,22 +30,21 @@ export default function Header() {
   const unreadNotificationsCount = notifications.filter(n => !n.read).length;
 
   const navItems = [
-    { label: "Home", href: "/", icon: FaHome },
+    { label: "My Pub", href: "/", icon: FaHome },
     { 
-      label: "My Network", 
+      label: "Bad Influences", 
       href: "/network", 
       icon: FaUserFriends,
       badge: 0 
     },
-    { label: "Jobs", href: "/jobs", icon: FaBriefcase },
     { 
-      label: "Messaging", 
+      label: "Drunk Texts", 
       href: "/messaging", 
       icon: FaComments,
       badge: unreadMessagesCount 
     },
     { 
-      label: "Notifications", 
+      label: "Pour Alerts", 
       href: "/notifications", 
       icon: FaBell,
       badge: unreadNotificationsCount 
@@ -74,7 +73,7 @@ export default function Header() {
             </div>
             <input
               type="text"
-              placeholder="Search cocktails, bartenders, bars..."
+              placeholder="Search bars, ex(es), excuses..."
               className={`w-full rounded-full bg-zinc-900 py-1.5 pl-9 pr-4 text-sm text-zinc-200 placeholder-zinc-500 border transition-all duration-200 focus:outline-none ${
                 searchFocused 
                   ? 'border-amber-500/50 shadow-sm shadow-amber-500/10 w-[320px]' 

@@ -13,7 +13,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
-export default function Messaging() {
+export default function DrunkTexts() {
   const threads = useDrinkedInStore((state) => state.threads);
   const sendMessage = useDrinkedInStore((state) => state.sendMessage);
   
@@ -51,14 +51,14 @@ export default function Messaging() {
           <section className="w-full md:w-2/5 border-r border-zinc-900 flex flex-col">
             {/* Search chats */}
             <div className="p-4 border-b border-zinc-900 bg-zinc-950/40 space-y-3">
-              <h2 className="text-sm font-bold text-zinc-200">Messaging</h2>
+              <h2 className="text-sm font-bold text-zinc-200">Drunk Texts</h2>
               <div className="relative">
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-500" />
                 <input
                   type="text"
-                  placeholder="Search messages, connections..."
+                  placeholder="Search apologies, bad influences..."
                   className="w-full rounded-lg bg-zinc-900 border border-zinc-800 py-1.5 pl-8.5 pr-3.5 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-zinc-750"
-                  onClick={() => alert("Search messages is disabled in mockup.")}
+                  onClick={() => alert("Search texts is disabled in mockup.")}
                 />
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function Messaging() {
                     </div>
                   </div>
                   <button 
-                    onClick={() => alert(`Details: ${activeThread.partnerName} is an active industry leader.`)}
+                    onClick={() => alert(`Accomplice details: ${activeThread.partnerName} is an active bad influence.`)}
                     className="p-2 rounded-full hover:bg-zinc-900 text-zinc-500 hover:text-zinc-300 transition-colors"
                   >
                     <FaInfoCircle className="h-4.5 w-4.5" />
@@ -162,17 +162,17 @@ export default function Messaging() {
                     <div className="flex items-center gap-1.5">
                       <button 
                         type="button"
-                        onClick={() => alert("Upload Image is disabled in mockup.")}
+                        onClick={() => alert("Image uploads disabled during active tabs.")}
                         className="p-2 rounded-full hover:bg-zinc-900 text-zinc-500 hover:text-zinc-300 transition-colors"
-                        title="Add image"
+                        title="Add blurry photo"
                       >
                         <FaImage className="h-4 w-4" />
                       </button>
                       <button 
                         type="button"
-                        onClick={() => alert("Upload PDF/Recipe document is disabled in mockup.")}
+                        onClick={() => alert("Sending bail bonds / documents is disabled in mockup.")}
                         className="p-2 rounded-full hover:bg-zinc-900 text-zinc-500 hover:text-zinc-300 transition-colors"
-                        title="Attach recipe file"
+                        title="Attach incident report / files"
                       >
                         <FaFileAlt className="h-4 w-4" />
                       </button>
@@ -180,7 +180,7 @@ export default function Messaging() {
 
                     <input
                       type="text"
-                      placeholder="Write a message, share a cocktail formula..."
+                      placeholder="Type a drunk text, apologize for last night..."
                       value={inputText}
                       onChange={(e) => setInputText(e.target.value)}
                       className="flex-1 rounded-full bg-zinc-900 border border-zinc-800 px-4 py-2 text-xs text-zinc-200 placeholder-zinc-500 focus:border-amber-500/40 focus:outline-none"
@@ -198,7 +198,7 @@ export default function Messaging() {
               </>
             ) : (
               <div className="flex-1 flex flex-col items-center justify-center text-center p-8">
-                <p className="text-xs text-zinc-500">Select a contact conversation thread to begin messaging.</p>
+                <p className="text-xs text-zinc-500">Select an accomplice to begin sending drunk texts.</p>
               </div>
             )}
           </section>
