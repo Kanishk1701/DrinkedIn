@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🍻 DrinkedIn
+DrinkedIn is the premier professional network for unprofessional behavior. Swap corporate milestones for nightlife achievements. Get endorsed for "Irish Goodbyes," equip the #OpenToShots profile ring, and write inspiring thought leadership about your worst hangovers. Because surviving Tequila Tuesday is your true full-time job.
 
-## Getting Started
+📋 Table of Contents
+About the Project
 
-First, run the development server:
+Key Features
 
-```bash
+Tech Stack
+
+Getting Started
+
+Environment Variables
+
+Contributing
+
+Disclaimer
+
+🥂 About the Project
+Traditional networking platforms focus on B2B SaaS synergies and Q3 deliverables. DrinkedIn disrupts the market by focusing on what truly matters: B2C (Bar-to-Couch) logistics and weekend stamina.
+
+This platform provides a satirical, 1:1 clone of corporate networking UX, repurposed for tracking nightlife milestones, endorsing friends for survival skills, and generating unhinged "thought leadership" posts about late-night pizza runs.
+
+✨ Key Features
+The "Thought Leadership" AI Generator: Turn a simple mistake ("I texted my ex") into a 10-line motivational post about risk-taking and vulnerability using our integrated LLM text generation.
+
+Corporate Profile Rings: Replace traditional status indicators with highly relevant tags like #OpenToShots, #BuyingRounds, and #Hungover (which automatically enables Do Not Disturb).
+
+Skill Endorsements: Validate your network's core competencies. Endorse connections for high-value skills such as Designated Driving, Irish Goodbyes, and Advanced Beer Pong.
+
+Real-Time "Cheers" Ticker: A WebSocket-powered live engagement feed. Instead of "Likes," users "Cheers" posts, triggering real-time UI animations.
+
+Nightlife Connections: Organize your network accurately—categorize connections by "Wingman," "Met in the Bathroom Line," or "Friend of a Friend."
+
+🛠 Tech Stack
+Frontend: Next.js & Tailwind CSS (For pixel-perfect corporate UI cloning)
+
+Backend: Node.js & FastAPI (For high-performance AI generation endpoints)
+
+Real-Time: WebSockets (Socket.io)
+
+Database: PostgreSQL
+
+🚀 Getting Started
+Follow these instructions to set up the project locally.
+
+Prerequisites
+Node.js (v18.x or higher)
+
+npm or yarn
+
+PostgreSQL running locally
+
+Installation
+Clone the repository:
+
+git clone https://github.com/yourusername/drinkedin.git
+cd drinkedin
+
+
+2. Install dependencies:
+   ```bash
+npm install
+Set up your environment variables (see below).
+
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Open `http://localhost:3000` in your browser to view the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Environment Variables
 
-## Learn More
+Create a `.env.local` file in the root directory and add the following:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+# Database configuration
+DATABASE_URL="postgresql://user:password@localhost:5432/drinkedin"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Authentication
+NEXTAUTH_SECRET="your_super_secret_key"
+NEXTAUTH_URL="http://localhost:3000"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# AI Integration (For Thought Leadership Generator)
+OPENAI_API_KEY="your_api_key_here"
+🤝 Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated—whether it's a new feature, a bug fix, or just a funnier UI copy.
 
-## Deploy on Vercel
+Fork the Project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+⚠️ Disclaimer
+DrinkedIn is a satirical project built for entertainment and portfolio purposes. Please drink responsibly, never drink and drive, and hydrate before bed. The creators of this application are not responsible for any actual texts sent to your ex while using this platform.
