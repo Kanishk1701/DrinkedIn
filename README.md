@@ -98,4 +98,4 @@ Push to the Branch (git push origin feature/AmazingFeature)
 Open a Pull Request
 
 ⚠️ Disclaimer
-DrinkedIn is a satirical project built for entertainment and portfolio purposes. Please drink responsibly, never drink and drive, and hydrate before bed. The creators of this application are not responsible for any actual texts sent to your ex while using this platform.
+DrinkedIn is a satirical project built for entertainment and portfolio purposes. Please drink responsibly, never drink and drive, and hydrate before bed. The creator of this application are not responsible for any actual texts sent to your ex while using this platform.
