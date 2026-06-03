@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  FaGlassMartiniAlt, 
-  FaHome, 
-  FaUserFriends, 
-  FaBriefcase, 
-  FaComments, 
-  FaBell, 
+import {
+  FaGlassMartiniAlt,
+  FaHome,
+  FaUserFriends,
+  FaBriefcase,
+  FaComments,
+  FaBell,
   FaSearch,
   FaChevronDown,
   FaSignOutAlt,
@@ -16,13 +16,16 @@ import {
 } from "react-icons/fa";
 import { useDrinkedInStore } from "../store/drinkedinStore";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const profile = useDrinkedInStore((state) => state.profile);
+  const logoutAction = useDrinkedInStore((state) => state.logout);
   const threads = useDrinkedInStore((state) => state.threads);
   const notifications = useDrinkedInStore((state) => state.notifications);
-  
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
 
@@ -31,23 +34,23 @@ export default function Header() {
 
   const navItems = [
     { label: "My Pub", href: "/", icon: FaHome },
-    { 
-      label: "Bad Influences", 
-      href: "/network", 
+    {
+      label: "Bad Influences",
+      href: "/network",
       icon: FaUserFriends,
-      badge: 0 
+      badge: 0
     },
-    { 
-      label: "Drunk Texts", 
-      href: "/messaging", 
+    {
+      label: "Drunk Texts",
+      href: "/messaging",
       icon: FaComments,
-      badge: unreadMessagesCount 
+      badge: unreadMessagesCount
     },
-    { 
-      label: "Pour Alerts", 
-      href: "/notifications", 
+    {
+      label: "Pour Alerts",
+      href: "/notifications",
       icon: FaBell,
-      badge: unreadNotificationsCount 
+      badge: unreadNotificationsCount
     },
   ];
 
@@ -74,11 +77,10 @@ export default function Header() {
             <input
               type="text"
               placeholder="Search bars, ex(es), excuses..."
-              className={`w-full rounded-full bg-zinc-900 py-1.5 pl-9 pr-4 text-sm text-zinc-200 placeholder-zinc-500 border transition-all duration-200 focus:outline-none ${
-                searchFocused 
-                  ? 'border-amber-500/50 shadow-sm shadow-amber-500/10 w-[320px]' 
+              className={`w-full rounded-full bg-zinc-900 py-1.5 pl-9 pr-4 text-sm text-zinc-200 placeholder-zinc-500 border transition-all duration-200 focus:outline-none ${searchFocused
+                  ? 'border-amber-500/50 shadow-sm shadow-amber-500/10 w-[320px]'
                   : 'border-zinc-800 focus:border-zinc-700'
-              }`}
+                }`}
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setSearchFocused(false)}
             />
@@ -94,11 +96,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative flex flex-col items-center justify-center px-2 py-1.5 text-xs font-medium transition-colors duration-200 rounded-lg group ${
-                  isActive 
-                    ? "text-amber-500" 
+                className={`relative flex flex-col items-center justify-center px-2 py-1.5 text-xs font-medium transition-colors duration-200 rounded-lg group ${isActive
+                    ? "text-amber-500"
                     : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900/50"
-                }`}
+                  }`}
               >
                 <div className="relative">
                   <Icon className="h-5 w-5 mb-0.5" />
@@ -139,8 +140,8 @@ export default function Header() {
 
             {dropdownOpen && (
               <>
-                <div 
-                  className="fixed inset-0 z-10" 
+                <div
+                  className="fixed inset-0 z-10"
                   onClick={() => setDropdownOpen(false)}
                 />
                 <div className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl border border-zinc-800 bg-zinc-950 p-2 shadow-xl shadow-black/80 ring-1 ring-black ring-opacity-5 focus:outline-none z-20">
@@ -155,7 +156,7 @@ export default function Header() {
                       <p className="text-xs text-zinc-500 truncate">{profile.title}</p>
                     </div>
                   </div>
-                  
+
                   <div className="py-1">
                     <Link
                       href="/profile"
@@ -166,12 +167,13 @@ export default function Header() {
                       View Profile
                     </Link>
                   </div>
-                  
+
                   <div className="border-t border-zinc-900 pt-1 mt-1">
                     <button
                       onClick={() => {
                         setDropdownOpen(false);
-                        alert("DrinkedIn: Logging out is disabled in this mockup.");
+                        logoutAction();
+                        router.push("/login");
                       }}
                       className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-sm text-red-400 hover:bg-red-950/20 transition-colors text-left"
                     >

@@ -2,26 +2,39 @@
 
 import Header from "../components/Header";
 import { useDrinkedInStore } from "../store/drinkedinStore";
-import { 
-  FaEdit, 
-  FaPlus, 
-  FaMapMarkerAlt, 
-  FaAward, 
-  FaGraduationCap, 
-  FaGlassWhiskey, 
+import {
+  FaEdit,
+  FaPlus,
+  FaMapMarkerAlt,
+  FaAward,
+  FaGraduationCap,
+  FaGlassWhiskey,
   FaCheckCircle,
   FaArrowLeft,
   FaCheck
 } from "react-icons/fa";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const profile = useDrinkedInStore((state) => state.profile);
   const updateProfile = useDrinkedInStore((state) => state.updateProfile);
-  
+  const isLoggedIn = useDrinkedInStore((state) => state.isLoggedIn);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, [isLoggedIn, router]);
+
   const [isEditingAbout, setIsEditingAbout] = useState(false);
   const [aboutText, setAboutText] = useState(profile.about);
+
+  if (!isLoggedIn) {
+    return null;
+  }
   const [endorsements, setEndorsements] = useState<Record<string, number>>({
     "Molecular Mixology": 34,
     "Menu Engineering": 27,
@@ -59,7 +72,7 @@ export default function Profile() {
           {/* PROFILE HEADER CARD */}
           <section className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950 shadow-lg">
             {/* Banner image */}
-            <div 
+            <div
               className="h-44 w-full bg-cover bg-center"
               style={{ backgroundImage: `url(${profile.coverPhoto})` }}
             />
@@ -83,7 +96,7 @@ export default function Profile() {
                     <FaCheckCircle className="h-4 w-4 text-amber-500" title="Verified Mixologist" />
                   </h1>
                   <p className="text-sm font-medium text-amber-500 mt-1">{profile.title}</p>
-                  
+
                   <div className="flex items-center gap-1 text-xs text-zinc-500 mt-2">
                     <FaMapMarkerAlt />
                     <span>{profile.location}</span>
@@ -96,13 +109,13 @@ export default function Profile() {
 
                 {/* Profile actions */}
                 <div className="flex gap-2.5">
-                  <button 
+                  <button
                     onClick={() => alert("Status set to: Open to Drink! Notify all Bad Influences nearby.")}
                     className="rounded-full bg-amber-500 hover:bg-amber-600 px-4 py-1.5 text-xs font-bold text-zinc-950 transition-all hover:scale-[1.01]"
                   >
                     Open to drink
                   </button>
-                  <button 
+                  <button
                     onClick={() => alert("Creating custom DrinkedIn Hangover Report PDF...")}
                     className="rounded-full border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 px-4 py-1.5 text-xs font-bold text-zinc-300 transition-colors"
                   >
@@ -118,14 +131,14 @@ export default function Profile() {
             <div className="flex items-center justify-between mb-3.5">
               <h2 className="text-base font-bold text-zinc-100">About</h2>
               {!isEditingAbout ? (
-                <button 
+                <button
                   onClick={() => setIsEditingAbout(true)}
                   className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
                 >
                   <FaEdit className="h-4 w-4" />
                 </button>
               ) : (
-                <button 
+                <button
                   onClick={saveAbout}
                   className="flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-500 hover:bg-amber-500/20 text-xs font-bold transition-colors"
                 >
@@ -152,7 +165,7 @@ export default function Profile() {
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
               <h2 className="text-base font-bold text-zinc-100">Epic Drinking Achievements</h2>
-              <button 
+              <button
                 onClick={() => alert("Add Achievement page is disabled in mockup.")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
               >
@@ -181,7 +194,7 @@ export default function Profile() {
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg">
             <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-900">
               <h2 className="text-base font-bold text-zinc-100">Drinking Superpowers</h2>
-              <button 
+              <button
                 onClick={() => alert("Add custom superpower is coming soon!")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
               >
@@ -191,7 +204,7 @@ export default function Profile() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {profile.skills.map((skill) => (
-                <div 
+                <div
                   key={skill}
                   onClick={() => handleEndorse(skill)}
                   className="flex items-center justify-between p-3 rounded-xl border border-zinc-900 bg-zinc-900/30 hover:border-amber-500/20 hover:bg-amber-500/[0.01] cursor-pointer transition-all duration-200 select-none group"
@@ -212,7 +225,7 @@ export default function Profile() {
           <section className="rounded-xl border border-zinc-800 bg-zinc-950 p-6 shadow-lg space-y-4">
             <div className="flex items-center justify-between border-b border-zinc-900 pb-3">
               <h2 className="text-base font-bold text-zinc-100">Liver Training & Accreditations</h2>
-              <button 
+              <button
                 onClick={() => alert("Add credentials page is disabled in mockup.")}
                 className="p-1.5 rounded-full hover:bg-zinc-900 text-zinc-400 hover:text-amber-500 transition-colors"
               >

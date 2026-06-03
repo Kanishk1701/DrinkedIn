@@ -102,6 +102,7 @@ export interface UserProfile {
 }
 
 interface DrinkedInState {
+  isLoggedIn: boolean;
   profile: UserProfile;
   posts: Post[];
   connections: Connection[];
@@ -109,6 +110,9 @@ interface DrinkedInState {
   notifications: NotificationItem[];
   
   // Actions
+  login: (email: string) => void;
+  signup: (email: string, name: string, title: string, avatar: string) => void;
+  logout: () => void;
   addPost: (content: string, image?: string, recipe?: Recipe) => void;
   cheerPost: (postId: string) => void;
   sharePost: (postId: string) => void;
@@ -120,6 +124,7 @@ interface DrinkedInState {
 }
 
 export const useDrinkedInStore = create<DrinkedInState>((set) => ({
+  isLoggedIn: true,
   profile: {
     name: "Marcus Vane",
     title: "3-Second Pint Chugger & Tuesday Hangover Legend",
@@ -555,5 +560,34 @@ export const useDrinkedInStore = create<DrinkedInState>((set) => ({
   
   updateProfile: (updatedProfile) => set((state) => ({
     profile: { ...state.profile, ...updatedProfile }
+  })),
+
+  login: (email) => set((state) => ({
+    isLoggedIn: true,
+    profile: {
+      ...state.profile,
+      name: email.split("@")[0],
+      avatar: `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(email)}`,
+    }
+  })),
+
+  signup: (email, name, title, avatar) => set((state) => ({
+    isLoggedIn: true,
+    profile: {
+      ...state.profile,
+      name: name || "Anonymous drinker",
+      title: title || "3-Second Pint Chugger",
+      avatar: avatar || `https://api.dicebear.com/7.x/adventurer/svg?seed=${encodeURIComponent(email)}`,
+    }
+  })),
+
+  logout: () => set((state) => ({
+    isLoggedIn: false,
+    profile: {
+      ...state.profile,
+      name: "Guest",
+      title: "Stranger",
+      avatar: "https://api.dicebear.com/7.x/adventurer/svg?seed=guest",
+    }
   }))
 }));

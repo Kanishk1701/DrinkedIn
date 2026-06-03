@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "./components/Header";
 import PostCard from "./components/PostCard";
 import CreatePostModal from "./components/CreatePostModal";
@@ -50,15 +51,27 @@ import { useEffect } from "react";
 export default function Home() {
   const profile = useDrinkedInStore((state) => state.profile);
   const posts = useDrinkedInStore((state) => state.posts);
+  const isLoggedIn = useDrinkedInStore((state) => state.isLoggedIn);
+  const router = useRouter();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [shuffledNews, setShuffledNews] = useState<{id: number, title: string, category: string, readers: string}[]>([]);
+  const [shuffledNews, setShuffledNews] = useState<{ id: number, title: string, category: string, readers: string }[]>([]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/login");
+    }
+  }, [isLoggedIn, router]);
 
   useEffect(() => {
     // Shuffle news and take 6 items
     const shuffled = [...barNews].sort(() => 0.5 - Math.random());
     setShuffledNews(shuffled.slice(0, 6));
   }, []);
+
+  if (!isLoggedIn) {
+    return null;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-zinc-950 font-sans text-zinc-200">
